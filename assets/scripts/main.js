@@ -21,6 +21,7 @@ cc.Class({
         rect_height: 0, // 格子高度
         player_witdh: 0, // 腳色寬度
         player_height: 0, // 腳色高度
+        rect_spacing: 0, // 格子之間的間距
 
         /** node */
 
@@ -64,21 +65,27 @@ cc.Class({
 
         /** 遊戲內部參數 */
 
-        state_game: { // 0:顯示目錄頁面, 1:遊戲進行中, 2:遊戲結束
+        state_game: { // 目前遊戲階段 0:顯示目錄頁面, 1:遊戲進行中, 2:遊戲結束
             default: 0,
             type: cc.Integer,
             visible: false,
-        }, 
+        },
 
-        rect_arr: { // 棋盤上的格子
+        infoPlayer: { // info node內顯示的角色圖
             default: null,
-            type: [cc.Node],
+            type: cc.Prefab,
             visible: false,
         },
 
-        player_arr: { // 棋盤上的腳色
+        rect_arr: { // 棋盤上的格子 // XXX 可以用 prefab pool
             default: null,
-            type: [cc.Node],
+            type: [cc.Prefab],
+            visible: false,
+        },
+
+        player_arr: { // 棋盤上的腳色 // XXX 可以用 prefab pool
+            default: null,
+            type: [cc.Prefab],
             visible: false,
         },
 
@@ -90,21 +97,65 @@ cc.Class({
     },
 
     onLoad () {
+        this.init();
         this.reset();
-        this.updateUI();
     },
 
-    reset() { // 初始化內部參數
-
+    start () {
+        this.changeState(0); // XXX 用 enum
     },
 
-    updateUI() {
+    init() {
+        this.rect_arr = [];
+        this.player_arr = [];
+        this.selected_arr = new Array(this.row * this.col);
+    },
+
+    reset() { // 重置內部參數
+        this.state_game = 0;
+
+        if (this.infoPlayer !== null) {
+            this.infoPlayer.destory();
+        }
+        this.infoPlayer = null;
+
+        for (var i = 0; i < this.rect_arr.length; i++){
+            this.rect_arr[i].destory();
+        }
+        this.rect_arr = [];
+
+        for (var i = 0; i < this.player_arr.length; i++) {
+            this.player_arr[i].destory();
+        }
+        this.player_arr = [];
+
+        this.selected_arr.fill(0);
+    },
+
+    changeState(state) {
+        this.state_game = state;
+        this.update();
+    },
+
+    update() {
         switch (this.state_game) {
             case 0:
+                this.info.active = false;
+                this.notify.active = false;
+                this.restart.active = false;
+                this.menu.active = true;
                 break;
             case 1:
+                this.info.active = true;
+                this.notify.active = false;
+                this.restart.active = true;
+                this.menu.active = false;
                 break;
             case 2:
+                this.info.active = false;
+                this.notify.active = true;
+                this.restart.active = true;
+                this.menu.active = false;
                 break;
         }
     },
