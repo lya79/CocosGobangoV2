@@ -12,30 +12,38 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        // foo: {
-        //     // ATTRIBUTES:
-        //     default: null,        // The default value will be used only when the component attaching
-        //                           // to a node for the first time
-        //     type: cc.SpriteFrame, // optional, default is typeof default
-        //     serializable: true,   // optional, default is true
-        // },
-        // bar: {
-        //     get () {
-        //         return this._bar;
-        //     },
-        //     set (value) {
-        //         this._bar = value;
-        //     }
-        // },
+        main:{
+            default: null,
+            type: cc.Object,
+            visible: false,
+        },
     },
 
-    // LIFE-CYCLE CALLBACKS:
-
-    // onLoad () {},
-
-    start () {
-
+    onLoad() {
+        this.node.on(cc.Node.EventType.MOUSE_ENTER, this.mouseenter, this);
+        this.node.on(cc.Node.EventType.MOUSE_LEAVE, this.mouseleave, this);
+        this.node.on(cc.Node.EventType.TOUCH_START, this.onClick, this);
     },
 
-    // update (dt) {},
+    init(main) {
+        this.main = main;
+    },
+
+    onClick() {
+        this.main.onRestartClick();
+    },
+
+    onDestroy() {
+        this.node.on(cc.Node.EventType.MOUSE_ENTER, this.mouseenter, this);
+        this.node.on(cc.Node.EventType.MOUSE_LEAVE, this.mouseleave, this);
+        this.node.on(cc.Node.EventType.TOUCH_START, this.onClick, this);
+    },
+
+    mouseenter() {
+        this.node.color = new cc.color(100, 200, 100);
+    },
+
+    mouseleave() {
+        this.node.color = new cc.color(255, 255, 255);
+    },
 });

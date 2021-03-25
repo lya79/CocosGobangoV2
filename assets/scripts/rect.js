@@ -12,30 +12,90 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        // foo: {
-        //     // ATTRIBUTES:
-        //     default: null,        // The default value will be used only when the component attaching
-        //                           // to a node for the first time
-        //     type: cc.SpriteFrame, // optional, default is typeof default
-        //     serializable: true,   // optional, default is true
-        // },
-        // bar: {
-        //     get () {
-        //         return this._bar;
-        //     },
-        //     set (value) {
-        //         this._bar = value;
-        //     }
-        // },
+        main:{
+            default :null,
+            visible: false,
+        },
+        clicked:{
+            default: false,
+            visible: false,
+        },
+        row: {
+            default: false,
+            visible: false,
+        },
+        col: {
+            default: false,
+            visible: false,
+        },
     },
 
-    // LIFE-CYCLE CALLBACKS:
-
-    // onLoad () {},
-
-    start () {
-
+    onLoad(){
+        this.node.on(cc.Node.EventType.MOUSE_ENTER, this.mouseenter, this);
+        this.node.on(cc.Node.EventType.MOUSE_LEAVE, this.mouseleave, this);
+        this.node.on(cc.Node.EventType.TOUCH_START, this.onClick, this);
     },
 
-    // update (dt) {},
+    onDestroy(){
+        if (this.clicked) {
+            return;
+        }
+        this.unRegister();
+    },
+
+    init(main, col, row, opacity, width, height){
+        this.main = main;
+        this.col = col;
+        this.row = row;
+
+        this.node.width = width;
+        this.node.height = height;
+        this.node.opacity = opacity;
+    },
+
+    isClicked(){
+        return this.clicked;
+    },
+
+    onClick(){
+        if (this.clicked){
+            return;
+        }
+        this.clicked = true;
+        this.unRegister();
+        this.main.onRectClick(
+            this.node.x, this.node.y, 
+            this,
+            this.row, this.col,
+        );
+    },
+
+    mouseenter(){
+        this.node.color = new cc.color(100,200,100);
+    },
+
+    mouseleave() {
+        this.node.color = new cc.color(255, 255, 255);
+    },
+
+    unRegister(){
+        this.node.off(cc.Node.EventType.MOUSE_ENTER, this.mouseenter, this);
+        this.node.off(cc.Node.EventType.MOUSE_LEAVE, this.mouseleave, this);
+        this.node.off(cc.Node.EventType.TOUCH_START, this.onClick, this);
+    },
+
+    setBG(player1){
+        this.node.color = player1 ? new cc.color(117, 40, 141) : new cc.color(40, 141, 100);
+        this.node.opacity = 255;
+    },
+
+    setBGBingo() {
+        this.node.color = new cc.color(255, 255, 255);
+        this.node.opacity = 255;
+    },
+
+    lock(){
+        this.clicked = true;
+        this.unRegister();
+    },
 });

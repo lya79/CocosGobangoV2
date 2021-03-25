@@ -41,8 +41,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.514056913328033,
-      "y": 0.514056913328033,
+      "x": 0.9062337239583333,
+      "y": 0.9062337239583333,
       "z": 1
     },
     "_quat": {
@@ -897,6 +897,7 @@
       "__id__": 11
     },
     "_enabled": true,
+    "main": null,
     "_id": "38wOZe/k9BQ4qUVNTtT0VW"
   },
   {
@@ -1261,6 +1262,7 @@
       "__id__": 19
     },
     "_enabled": true,
+    "main": null,
     "_id": "36uMwEQk9LPZHO2U7TH6eM"
   },
   {
@@ -1480,6 +1482,7 @@
       "__id__": 31
     },
     "_enabled": true,
+    "main": null,
     "_id": "b9vNJUIr9D6b+jfVpWrl0o"
   },
   {
@@ -2039,7 +2042,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 183.33,
-      "height": 150
+      "height": 44.44
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -2196,7 +2199,7 @@
     "_layoutSize": {
       "__type__": "cc.Size",
       "width": 183.33,
-      "height": 150
+      "height": 44.44
     },
     "_resize": 1,
     "_N$layoutType": 1,
@@ -2211,7 +2214,7 @@
     "_N$paddingRight": 0,
     "_N$paddingTop": 0,
     "_N$paddingBottom": 0,
-    "_N$spacingX": 10,
+    "_N$spacingX": 30,
     "_N$spacingY": 0,
     "_N$verticalDirection": 1,
     "_N$horizontalDirection": 0,
@@ -2262,11 +2265,13 @@
       "__id__": 2
     },
     "_enabled": true,
-    "bingo": 5,
+    "bingo": 3,
     "row": 7,
     "col": 7,
-    "rect_witdh": 50,
-    "rect_height": 50,
+    "rect_opacity": 80,
+    "rect_offset": 50,
+    "rect_width": 60,
+    "rect_height": 60,
     "player_witdh": 50,
     "player_height": 50,
     "rect_spacing": 5,
@@ -2282,17 +2287,24 @@
     "info": {
       "__id__": 46
     },
+    "menuPlayer1": {
+      "__id__": 11
+    },
+    "menuPlayer2": {
+      "__id__": 19
+    },
     "prefab_rect": {
       "__uuid__": "1d343c20-df63-4799-a325-5e90efbfa762"
     },
-    "prefab_player1": {
+    "prefabPlayer1": {
       "__uuid__": "e662e003-938a-4273-aee1-683d49cb27dc"
     },
-    "prefab_player2": {
+    "prefabPlayer2": {
       "__uuid__": "38739ef1-0bef-4772-9847-7643b6f6d02d"
     },
-    "state_game": true,
-    "infoPlayer": null,
+    "first": true,
+    "round": 0,
+    "gameState": -1,
     "rect_arr": null,
     "player_arr": null,
     "selected_arr": [],
