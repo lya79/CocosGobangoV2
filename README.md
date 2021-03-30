@@ -24,8 +24,8 @@ Rect Spacing | 棋盤格子間距
 
 ### 初始畫面
 
-![初始畫面]](https://raw.githubusercontent.com/lya79/CocosGobangoV2/master/2.PNG)
+![初始畫面](https://raw.githubusercontent.com/lya79/CocosGobangoV2/master/2.PNG)
 
 ### 下棋畫面
 
-![下棋畫面]](https://raw.githubusercontent.com/lya79/CocosGobangoV2/master/3.PNG)
+![下棋畫面](https://raw.githubusercontent.com/lya79/CocosGobangoV2/master/3.PNG)
