@@ -8,12 +8,17 @@
 //  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
 //  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 
+const DEF_CHESS = 0
+const FIRST_CHESS = 1
+const SECOND_CHESS = 2
+
 cc.Class({
     extends: cc.Component,
 
     properties: {
         /** 遊戲參數 */
 
+        level: 0, // 電腦程度, 其他:隨機下, 1:普通
         bingo: 0, // 多少顆旗子bingo
         row: 0, // 格子列數
         col: 0, // 格子欄數
@@ -145,26 +150,490 @@ cc.Class({
         this.player_arr = [];
 
         for (var row = 0; row < this.row; row++) {
-            this.selected_arr[row].fill(0);
+            this.selected_arr[row].fill(DEF_CHESS);
         }
 
         this.round = 1;
     },
 
     computerRound() { // 電腦的回合, 隨機選一個地方下棋 
-        var self = this;
-
-        function getNode(row, col) {
-            /**
-             * 0 1 2  3
-             * 4 5 6  7
-             * 8 9 10 11
-             */
-            var idx = (row * self.col) + col;
-            return self.rect_arr[idx];
+        if (this.level == 1) {
+            this.normalPC();
+            return;
         }
 
-        // this.selected_arr
+        this.randPC();
+    },
+
+
+    case1(row, col, targetChess, broadArray) { // 檢查 | 
+        var mode = 0; // 0:兩邊堵死, 1:還有活一邊, 2:兩邊都活
+        var count = 1;
+
+        var rowLen = broadArray.length;
+
+        var posArray = [];
+        posArray.push({ Row: row, Col: col });
+
+        {
+            var tmpCol = col;
+            for (var i = 1;; i++) {
+                var tmpRow = row + i;
+                if (tmpRow >= rowLen || (tmpRow < rowLen && broadArray[tmpRow][tmpCol] != targetChess)) {
+                    if (tmpRow < rowLen && broadArray[tmpRow][tmpCol] == DEF_CHESS) {
+                        mode += 1;
+                    }
+
+                    break
+                }
+                count += 1;
+                posArray.push({ Row: tmpRow, Col: tmpCol });
+            }
+        }
+
+        {
+            var tmpCol = col
+            for (var i = 1;; i++) {
+                var tmpRow = row + (i * -1)
+                if (tmpRow < 0 || (tmpRow >= 0 && broadArray[tmpRow][tmpCol] != targetChess)) {
+                    if (tmpRow >= 0 && broadArray[tmpRow][tmpCol] == DEF_CHESS) {
+                        mode += 1;
+                    }
+                    break
+                }
+                count += 1;
+                posArray.push({ Row: tmpRow, Col: tmpCol });
+            }
+        }
+
+        return {
+            mode: mode,
+            count: count,
+            posArray: posArray,
+        };
+    },
+
+    case2(row, col, targetChess, broadArray) { // 檢查 - 
+        var mode = 0; // 0:兩邊堵死, 1:還有活一邊, 2:兩邊都活
+        var count = 1;
+
+        var colLen = broadArray[0].length;
+
+        var posArray = [];
+        posArray.push({ Row: row, Col: col });
+
+        {
+            var tmpRow = row;
+            for (var i = 1;; i++) {
+                var tmpCol = col + i;
+                if (tmpCol >= colLen || (tmpCol < colLen && broadArray[tmpRow][tmpCol] != targetChess)) {
+                    if (tmpCol < colLen && broadArray[tmpRow][tmpCol] == DEF_CHESS) {
+                        mode += 1;
+                    }
+
+                    break
+                }
+                count += 1;
+                posArray.push({ Row: tmpRow, Col: tmpCol });
+            }
+        } {
+            var tmpRow = row;
+            for (var i = 1;; i++) {
+                var tmpCol = col + (i * -1);
+                if (tmpCol < 0 || (tmpCol >= 0 && broadArray[tmpRow][tmpCol] != targetChess)) {
+                    if (tmpCol >= 0 && broadArray[tmpRow][tmpCol] == DEF_CHESS) {
+                        mode += 1;
+                    }
+                    break
+                }
+                count += 1;
+                posArray.push({ Row: tmpRow, Col: tmpCol });
+            }
+        }
+
+        return {
+            mode: mode,
+            count: count,
+            posArray: posArray,
+        };
+    },
+
+    case3(row, col, targetChess, broadArray) { // 檢查 / 
+        var mode = 0; // 0:兩邊堵死, 1:還有活一邊, 2:兩邊都活
+        var count = 1;
+
+        var rowLen = broadArray.length;
+        var colLen = broadArray[0].length;
+
+        var posArray = [];
+        posArray.push({ Row: row, Col: col });
+
+        {
+            for (var i = 1;; i++) {
+                var tmpRow = row + (i * -1);
+                var tmpCol = col + i;
+                if (tmpRow < 0 || tmpCol < 0 ||
+                    tmpRow >= rowLen || tmpCol >= colLen ||
+                    broadArray[tmpRow][tmpCol] != targetChess) {
+                    if (tmpRow >= 0 && tmpRow < rowLen &&
+                        tmpCol >= 0 && tmpCol < colLen &&
+                        broadArray[tmpRow][tmpCol] == DEF_CHESS) {
+                        mode += 1;
+                    }
+                    break
+                }
+                count += 1;
+                posArray.push({ Row: tmpRow, Col: tmpCol });
+            }
+        } {
+            for (var i = 1;; i++) {
+                var tmpRow = row + i;
+                var tmpCol = col + (i * -1);
+                if (tmpRow < 0 || tmpCol < 0 ||
+                    tmpRow >= rowLen || tmpCol >= colLen ||
+                    broadArray[tmpRow][tmpCol] != targetChess) {
+                    if (tmpRow >= 0 && tmpRow < rowLen &&
+                        tmpCol >= 0 && tmpCol < colLen &&
+                        broadArray[tmpRow][tmpCol] == DEF_CHESS) {
+                        mode += 1;
+                    }
+                    break
+                }
+                count += 1;
+                posArray.push({ Row: tmpRow, Col: tmpCol });
+            }
+        }
+
+        return {
+            mode: mode,
+            count: count,
+            posArray: posArray,
+        };
+    },
+
+    case4(row, col, targetChess, broadArray) { // 檢查 \  
+        var mode = 0; // 0:兩邊堵死, 1:還有活一邊, 2:兩邊都活
+        var count = 1;
+
+        var rowLen = broadArray.length;
+        var colLen = broadArray[0].length;
+
+        var posArray = [];
+        posArray.push({ Row: row, Col: col });
+
+        {
+            for (var i = 1;; i++) {
+                var tmpRow = row + (i * -1);
+                var tmpCol = col + (i * -1);
+                if (tmpRow < 0 || tmpCol < 0 ||
+                    tmpRow >= rowLen || tmpCol >= colLen ||
+                    broadArray[tmpRow][tmpCol] != targetChess) {
+                    if (tmpRow >= 0 && tmpRow < rowLen &&
+                        tmpCol >= 0 && tmpCol < colLen &&
+                        broadArray[tmpRow][tmpCol] == DEF_CHESS) {
+                        mode += 1;
+                    }
+                    break
+                }
+                count += 1;
+                posArray.push({ Row: tmpRow, Col: tmpCol });
+            }
+        } {
+            for (var i = 1;; i++) {
+                var tmpRow = row + i;
+                var tmpCol = col + i;
+                if (tmpRow < 0 || tmpCol < 0 ||
+                    tmpRow >= rowLen || tmpCol >= colLen ||
+                    broadArray[tmpRow][tmpCol] != targetChess) {
+                    if (tmpRow >= 0 && tmpRow < rowLen &&
+                        tmpCol >= 0 && tmpCol < colLen &&
+                        broadArray[tmpRow][tmpCol] == DEF_CHESS) {
+                        mode += 1;
+                    }
+                    break
+                }
+                count += 1;
+                posArray.push({ Row: tmpRow, Col: tmpCol });
+            }
+        }
+
+        return {
+            mode: mode,
+            count: count,
+            posArray: posArray,
+        };
+    },
+
+    calculator(targetChess, broadArray) {
+        var funcArray = [this.case1, this.case2, this.case3, this.case4];
+        var lineArray = [] // 儲存有哪些連線
+
+        for (var row = 0; row < broadArray.length; row++) {
+            for (var col = 0; col < broadArray[row].length; col++) {
+                if (broadArray[row][col] != targetChess) {
+                    continue
+                }
+
+                for (var k = 0; k < funcArray.length; k++) {
+                    var funcObj = funcArray[k](row, col, targetChess, broadArray)
+                    var mode = funcObj.mode;
+                    var count = funcObj.count;
+                    var posArray = funcObj.posArray;
+                    var tag = "";
+
+                    { // 將 posArray排序
+                        posArray = posArray.sort(function(a, b) {
+                            return (a.Row + "x" + a.Col) > (b.Row + "x" + b.Col) ? 1 : -1;
+                        });
+                        var str = k + "_" + mode + "_";
+                        for (var m = 0; m < posArray.length; m++) {
+                            var value = posArray[m];
+                            str += (value.Row + "x" + value.Col + ",");
+                        }
+                        tag = str
+                    }
+
+                    var repeat = false
+                    for (var n = 0; n < lineArray.length; n++) { // 檢查是否重複的 line
+                        var line = lineArray[n];
+                        if (line.tag == tag) {
+                            repeat = true
+                            break
+                        }
+                    }
+                    if (repeat) {
+                        continue
+                    }
+
+                    lineArray.push({
+                        mode: mode,
+                        count: count,
+                        PosArray: posArray,
+                        tag: tag,
+                        memo: (k + 1),
+                    })
+                }
+            }
+        }
+
+        // 將 lineArray內的連線取出, 計算總得分
+        var score = 0
+        for (var k = 0; k < lineArray.length; k++) {
+            var value = lineArray[k];
+            // if (broadArray[1][3] == 1 || broadArray[1][4] == 1 || broadArray[5][4] == 1) {
+            // console.log("chess:" + targetChess + ", score:" + this.getScore(value.count, value.mode) + ", count:" + value.count + ", mode:" + value.mode + ", tag:" + value.tag + ", memo:" + value.memo);
+            // }
+            score += this.getScore(value.count, value.mode)
+        }
+
+        return score
+    },
+
+    // 取得評分表, count:顆數, mode: true:兩邊都活, false:一側封死
+    getScore(count, mode) {
+        if (count == 5) {
+            return 100000
+        } else if (mode == 0) {
+            return 0
+        }
+
+        switch (count) {
+            case 4:
+                if (mode == 2) {
+                    return 10000
+                } else if (mode == 1) {
+                    return 1000
+                }
+            case 3:
+                if (mode == 2) {
+                    return 1000
+                } else if (mode == 1) {
+                    return 100
+                }
+            case 2:
+                if (mode == 2) {
+                    return 100
+                } else if (mode == 1) {
+                    return 10
+                }
+            case 1:
+                return 10
+        }
+        return 0
+    },
+
+    normalPC() {
+        var round = this.round;
+        var broadArray = this.selected_arr;
+
+        var maxScore = {
+            Score: 0,
+            Row: -1,
+            Col: -1,
+        }
+
+        var selectedRow = -1;
+        var selectedCol = -1;
+
+        var player1 = this.isPlayer1(round)
+
+        if (round <= 2) { // 前兩局固定下法
+            var centerRow = parseInt(this.row / 2);
+            var centerCol = parseInt(this.col / 2);
+            if (player1) { // 直接放置中間
+                // broadArray[centerRow][centerCol] = FIRST_CHESS
+                selectedRow = centerRow;
+                selectedCol = centerCol;
+            } else { // 貼在玩家1的旁邊
+                var firstRow = -1;
+                var firstCol = -1;
+                for (var row = 0; row < broadArray.length; row++) {
+                    if (firstRow != -1 && firstCol != -1) {
+                        break;
+                    }
+                    for (var col = 0; col < broadArray[row].length; col++) {
+                        if (broadArray[row][col] == FIRST_CHESS) {
+                            firstRow = row;
+                            firstCol = col;
+                            break;
+                        }
+                    }
+                }
+
+                { // 盡量往中間放
+                    var distance = function(x1, y1, x2, y2) {
+                        var a = x1 - x2;
+                        var b = y1 - y2;
+                        var c = Math.sqrt(a * a + b * b);
+                        return c;
+                    }
+
+                    // 離中間最短距離
+                    var minRow = -1;
+                    var minCol = -1;
+
+                    { // 上
+                        var row = firstRow - 1;
+                        var col = firstCol;
+                        if (row >= 0) {
+                            minRow = row;
+                            minCol = col;
+                        }
+                    }
+
+                    { // 下
+                        var row = firstRow + 1;
+                        var col = firstCol;
+                        if (row < broadArray.length) {
+                            if (minRow == -1 || minCol == -1 ||
+                                (distance(row, col, centerRow, centerCol) < distance(minRow, minCol, centerRow, centerCol))) {
+                                minRow = row;
+                                minCol = col;
+                            }
+                        }
+                    }
+
+                    { // 左
+                        var row = firstRow;
+                        var col = firstCol - 1;
+                        if (col >= 0) {
+                            if (minRow == -1 || minCol == -1 ||
+                                (distance(row, col, centerRow, centerCol) < distance(minRow, minCol, centerRow, centerCol))) {
+                                minRow = row;
+                                minCol = col;
+                            }
+                        }
+                    }
+
+                    { // 右
+                        var row = firstRow;
+                        var col = firstCol + 1;
+                        if (col < broadArray[0].length) {
+                            if (minRow == -1 || minCol == -1 ||
+                                (distance(row, col, centerRow, centerCol) < distance(minRow, minCol, centerRow, centerCol))) {
+                                minRow = row;
+                                minCol = col;
+                            }
+                        }
+                    }
+
+                    // broadArray[minRow][minCol] = SECOND_CHESS
+
+                    selectedRow = minRow;
+                    selectedCol = minCol;
+                }
+            }
+        } else {
+            for (var row = 0; row < broadArray.length; row++) {
+                for (var col = 0; col < broadArray[row].length; col++) {
+                    if (broadArray[row][col] != DEF_CHESS) { // 不能下棋的位置不處理
+                        continue
+                    }
+
+                    { // 暫時修改陣列
+                        broadArray[row][col] = player1 ? FIRST_CHESS : SECOND_CHESS;
+                    }
+
+                    { // 檢查分數
+
+                        var playerScore = this.calculator(FIRST_CHESS, broadArray) // 計算玩家1的分數
+                        var player2Score = this.calculator(SECOND_CHESS, broadArray) // 計算玩家2的分數
+
+                        var score = player1 ? playerScore - player2Score : player2Score - playerScore;
+
+                        // if ((row == 1 && col == 3) || (row == 1 && col == 4) || (row == 5 && col == 4)) {
+                        // console.log("下棋位置: r:" + row + ", c:" + col + ", score:" + score + ", 1:" + playerScore + ", 2:" + player2Score)
+                        // }
+
+                        if (score > maxScore.Score || (maxScore.Row == -1 && maxScore.Col == -1)) { // 獲取最高分
+                            maxScore.Score = score
+                            maxScore.Row = row
+                            maxScore.Col = col
+                        }
+                    }
+
+                    { // 回復原本陣列
+                        broadArray[row][col] = DEF_CHESS
+                    }
+                }
+            }
+
+            { // 設定結果
+                selectedRow = maxScore.Row;
+                selectedCol = maxScore.Col;
+            }
+        }
+
+
+        { // 更新ui
+            var idx = this.getNode(selectedRow, selectedCol);
+            var rect = idx.getComponent('rect');
+            rect.onClick();
+        }
+    },
+
+    getNode(row, col) {
+        /**
+         * 0 1 2  3
+         * 4 5 6  7
+         * 8 9 10 11
+         */
+        var idx = (row * this.col) + col;
+        return this.rect_arr[idx];
+    },
+
+    randPC() { // 電腦的回合, 隨機選一個地方下棋 
+        // var self = this;
+
+        // function getNode(row, col) {
+        //     /**
+        //      * 0 1 2  3
+        //      * 4 5 6  7
+        //      * 8 9 10 11
+        //      */
+        //     var idx = (row * self.col) + col;
+        //     return self.rect_arr[idx];
+        // }
 
         function getRandomInt(max) {
             return Math.floor(Math.random() * Math.floor(max));
@@ -189,7 +658,7 @@ cc.Class({
                     if (col >= this.selected_arr[row].length) {
                         col = 0;
                     }
-                    if (this.selected_arr[row][col] == 0) {
+                    if (this.selected_arr[row][col] == DEF_CHESS) {
                         row2 = row;
                         col2 = col;
                         break;
@@ -198,7 +667,7 @@ cc.Class({
             }
         }
 
-        var idx = getNode(row2, col2);
+        var idx = this.getNode(row2, col2);
         var rect = idx.getComponent('rect');
         rect.onClick();
     },
@@ -222,7 +691,7 @@ cc.Class({
     onRectClick(x, y, obj, row, col) {
         var player1 = this.isPlayer1();
 
-        this.selected_arr[row][col] = player1 ? 1 : 2;
+        this.selected_arr[row][col] = player1 ? FIRST_CHESS : SECOND_CHESS;
         obj.setBG(player1);
         this.updateRect(x, y);
 
@@ -264,7 +733,7 @@ cc.Class({
     isTie() { // 檢查是否為平手
         for (var row = 0; row < this.selected_arr.length; row++) {
             for (var col = 0; col < this.selected_arr[row].length; col++) {
-                if (this.selected_arr[row][col] == 0) {
+                if (this.selected_arr[row][col] == DEF_CHESS) {
                     return false;
                 }
             }

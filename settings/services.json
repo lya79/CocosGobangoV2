@@ -3,7 +3,7 @@
     {
       "service_id": "303",
       "service_name": "性能管理",
-      "service_icon": "https://download.cocos.com/CocosUdc/client/dae922b126/a2086908cfd32786e222b3c5c89b553b.png",
+      "service_icon": "https://download.cocos.com/CocosUdc/client/e8b3ed0ab3/46053c315d7c023d22b87fb78fa03e0d.png",
       "service_desc": "性能管理（APM，App Performance Management）服务提供分钟级应用性能监控能力，开发者可以在AGC查看和分析APM收集到的应用性能数据，从而全面了解所开发应用的性能特点，快速精准修复应用存在的性能问题，持续提升应用的用户体验。",
       "service_title": "提供分钟级应用性能监控能力，收集应用性能数据",
       "service_guide_url": "https://service.cocos.com/document/zh/agc-apm.html",
@@ -27,13 +27,13 @@
       "service_price": "",
       "service_protocol": "游戏首次开启该服务时，Cocos会后台通知服务方为游戏开通服务并初始化参数，服务方根据需要可能会获取您的Cocos账户信息，包括账户基本资料、游戏基本资料、账户余额等，点击确认开通按钮即视为您同意该服务访问您的账户信息，详见<a href='https://download.cocos.com/CocosUdc/agreement/Cocos_User_Service_Agreement_cn_20200904.html'>《Cocos用户服务协议》</a>和<a href='https://download.cocos.com/CocosUdc/agreement/Cocos_Privacy_Policy_cn_20200904.html'>《Cocos隐私政策》</a>",
       "service_group": "HUAWEI AppGallery Connect",
-      "service_group_id": "",
+      "service_group_id": "1001",
       "not_service": false
     },
     {
       "service_id": "304",
       "service_name": "认证服务",
-      "service_icon": "https://download.cocos.com/CocosUdc/client/dae922b126/6a228adda1dd9d0ef13c4fdce4c1768e.png",
+      "service_icon": "https://download.cocos.com/CocosUdc/client/e8b3ed0ab3/87fab3ee7098640a3a6bcaf9b6d41f31.png",
       "service_desc": "AppGallery Connect认证服务支持多种认证方式，并与其他Serverless服务紧密集成，您可以通过简单的规则定义来保护您的用户的数据安全。",
       "service_title": "基于预构建的托管式认证系统，更有效率地保护您的移动和Web用户的数据安全。",
       "service_guide_url": "https://service.cocos.com/document/zh/agc-auth.html",
@@ -57,13 +57,13 @@
       "service_price": "",
       "service_protocol": "游戏首次开启该服务时，Cocos会后台通知服务方为游戏开通服务并初始化参数，服务方根据需要可能会获取您的Cocos账户信息，包括账户基本资料、游戏基本资料、账户余额等，点击确认开通按钮即视为您同意该服务访问您的账户信息，详见<a href='https://download.cocos.com/CocosUdc/agreement/Cocos_User_Service_Agreement_cn_20200904.html'>《Cocos用户服务协议》</a>和<a href='https://download.cocos.com/CocosUdc/agreement/Cocos_Privacy_Policy_cn_20200904.html'>《Cocos隐私政策》</a>",
       "service_group": "HUAWEI AppGallery Connect",
-      "service_group_id": "",
+      "service_group_id": "1001",
       "not_service": false
     },
     {
       "service_id": "305",
       "service_name": "崩溃服务",
-      "service_icon": "https://download.cocos.com/CocosUdc/client/dae922b126/e1067f139d8af6d7e06f278bbc15e00b.png",
+      "service_icon": "https://download.cocos.com/CocosUdc/client/e8b3ed0ab3/8ea2f92ed25f2b15c194f1687d55f53e.png",
       "service_desc": "崩溃服务是一个轻量级崩溃分析服务，它为您提供了 Crash SDK，可以零代码快速集成。您可以通过崩溃报告了解您的应用崩溃情况，我们提供最近 1 小时的实时报告，您可以实时监测应用质量",
       "service_title": "实时数据报告，多维度分析，快速解决崩溃问题。",
       "service_guide_url": "https://service.cocos.com/document/zh/agc-crash.html",
@@ -87,13 +87,13 @@
       "service_price": "",
       "service_protocol": "游戏首次开启该服务时，Cocos会后台通知服务方为游戏开通服务并初始化参数，服务方根据需要可能会获取您的Cocos账户信息，包括账户基本资料、游戏基本资料、账户余额等，点击确认开通按钮即视为您同意该服务访问您的账户信息，详见<a href='https://download.cocos.com/CocosUdc/agreement/Cocos_User_Service_Agreement_cn_20200904.html'>《Cocos用户服务协议》</a>和<a href='https://download.cocos.com/CocosUdc/agreement/Cocos_Privacy_Policy_cn_20200904.html'>《Cocos隐私政策》</a>",
       "service_group": "HUAWEI AppGallery Connect",
-      "service_group_id": "",
+      "service_group_id": "1001",
       "not_service": false
     },
     {
       "service_id": "306",
       "service_name": "App Linking",
-      "service_icon": "https://download.cocos.com/CocosUdc/client/dae922b126/18aa097c89c654a5ff38b468435c14ef.png",
+      "service_icon": "https://download.cocos.com/CocosUdc/client/e8b3ed0ab3/c6f540a4b1f061a3aa552e1875dd8bc2.png",
       "service_desc": "App Linking是一种无论应用是否已经安装都可以按照所需方式工作的跨平台链接，创建App Linking后将链接地址多渠道分发，用户点击链接后即可跳转到链接指定的内容，有长链接和短链接之分。",
       "service_title": "跨平台深度链接直达应用内内容，推动应用增长。",
       "service_guide_url": "https://service.cocos.com/document/zh/agc-applinking.html",
@@ -120,13 +120,13 @@
       "service_price": "",
       "service_protocol": "游戏首次开启该服务时，Cocos会后台通知服务方为游戏开通服务并初始化参数，服务方根据需要可能会获取您的Cocos账户信息，包括账户基本资料、游戏基本资料、账户余额等，点击确认开通按钮即视为您同意该服务访问您的账户信息，详见<a href='https://download.cocos.com/CocosUdc/agreement/Cocos_User_Service_Agreement_cn_20200904.html'>《Cocos用户服务协议》</a>和<a href='https://download.cocos.com/CocosUdc/agreement/Cocos_Privacy_Policy_cn_20200904.html'>《Cocos隐私政策》</a>",
       "service_group": "HUAWEI AppGallery Connect",
-      "service_group_id": "",
+      "service_group_id": "1001",
       "not_service": false
     },
     {
       "service_id": "307",
       "service_name": "应用内消息",
-      "service_icon": "https://download.cocos.com/CocosUdc/client/dae922b126/247b4be6edf2b84b9f3b40e5ffc4cad6.png",
+      "service_icon": "https://download.cocos.com/CocosUdc/client/e8b3ed0ab3/8d648e354363686963ad739c5ae31113.png",
       "service_desc": "应用内消息服务（App Messaging），实现用户使用应用时，向活跃用户发送有针对性的消息来鼓励用户使用应用的关键功能，从而吸引这些用户。例如，通过应用内消息，您可以鼓励用户订阅、给出某个关卡的通过提示，或者推荐某个餐厅活动。",
       "service_title": "基于用户使用情境发送上下文相关消息，增强用户粘性。",
       "service_guide_url": "https://service.cocos.com/document/zh/agc-appmessaging.html",
@@ -152,13 +152,13 @@
       "service_price": "",
       "service_protocol": "游戏首次开启该服务时，Cocos会后台通知服务方为游戏开通服务并初始化参数，服务方根据需要可能会获取您的Cocos账户信息，包括账户基本资料、游戏基本资料、账户余额等，点击确认开通按钮即视为您同意该服务访问您的账户信息，详见<a href='https://download.cocos.com/CocosUdc/agreement/Cocos_User_Service_Agreement_cn_20200904.html'>《Cocos用户服务协议》</a>和<a href='https://download.cocos.com/CocosUdc/agreement/Cocos_Privacy_Policy_cn_20200904.html'>《Cocos隐私政策》</a>",
       "service_group": "HUAWEI AppGallery Connect",
-      "service_group_id": "",
+      "service_group_id": "1001",
       "not_service": false
     },
     {
       "service_id": "308",
       "service_name": "远程配置",
-      "service_icon": "https://download.cocos.com/CocosUdc/client/dae922b126/9f811bd45dcb002108c3eda59c24d00e.png",
+      "service_icon": "https://download.cocos.com/CocosUdc/client/e8b3ed0ab3/cb1415def30cb297a226334a4c8866c1.png",
       "service_desc": "AppGallery Connect远程配置服务提供了在线的配置项管理能力，可以实现应用在线更改行为和外观，而无需用户下载应用更新。",
       "service_title": "无需升级引用，也可灵活修改应用的行为和外观",
       "service_guide_url": "https://service.cocos.com/document/zh/agc-remote.html",
@@ -182,13 +182,13 @@
       "service_price": "",
       "service_protocol": "游戏首次开启该服务时，Cocos会后台通知服务方为游戏开通服务并初始化参数，服务方根据需要可能会获取您的Cocos账户信息，包括账户基本资料、游戏基本资料、账户余额等，点击确认开通按钮即视为您同意该服务访问您的账户信息，详见<a href='https://download.cocos.com/CocosUdc/agreement/Cocos_User_Service_Agreement_cn_20200904.html'>《Cocos用户服务协议》</a>和<a href='https://download.cocos.com/CocosUdc/agreement/Cocos_Privacy_Policy_cn_20200904.html'>《Cocos隐私政策》</a>",
       "service_group": "HUAWEI AppGallery Connect",
-      "service_group_id": "",
+      "service_group_id": "1001",
       "not_service": false
     },
     {
       "service_id": "309",
       "service_name": "云存储",
-      "service_icon": "https://download.cocos.com/CocosUdc/client/dae922b126/560c81dbb885934a16a21ee5a97f33bf.png",
+      "service_icon": "https://download.cocos.com/CocosUdc/client/e8b3ed0ab3/477f8cf2c59e70144f7c7060fa8710df.png",
       "service_desc": "云存储是专为开发者打造的可伸缩、免维护的云端存储服务，您可以用于存储图片、音频、视频或其他由用户生成的内容。",
       "service_title": "跨平台提供高效经济的文件上传下载服务",
       "service_guide_url": "https://service.cocos.com/document/zh/agc-cloudstorage.html",
@@ -212,13 +212,13 @@
       "service_price": "",
       "service_protocol": "游戏首次开启该服务时，Cocos会后台通知服务方为游戏开通服务并初始化参数，服务方根据需要可能会获取您的Cocos账户信息，包括账户基本资料、游戏基本资料、账户余额等，点击确认开通按钮即视为您同意该服务访问您的账户信息，详见<a href='https://download.cocos.com/CocosUdc/agreement/Cocos_User_Service_Agreement_cn_20200904.html'>《Cocos用户服务协议》</a>和<a href='https://download.cocos.com/CocosUdc/agreement/Cocos_Privacy_Policy_cn_20200904.html'>《Cocos隐私政策》</a>",
       "service_group": "HUAWEI AppGallery Connect",
-      "service_group_id": "",
+      "service_group_id": "1001",
       "not_service": false
     },
     {
       "service_id": "311",
       "service_name": "云数据库",
-      "service_icon": "https://download.cocos.com/CocosUdc/client/56b108cb3f/5402f3a72dd22daf06217935d64ba12a.png",
+      "service_icon": "https://download.cocos.com/CocosUdc/client/e8b3ed0ab3/dd6263d489cf79ef7cc4ec8e59f5ca17.png",
       "service_desc": "Cloud DB 是一款端云协同的数据库产品，提供端云数据的协同管理、统一的数据模型和丰富的数据管理 API 接口等能力。在保证数据的可用性、可靠性、一致性，以及安全等特性基础上，能够实现数据在客户端和云端之间的无缝同步，并为应用提供离线支持，以帮助开发者快速构建端云、多端协同的应用。",
       "service_title": "安全可信的数据管理服务",
       "service_guide_url": "https://service.cocos.com/document/zh/agc-clouddb.html",
@@ -244,13 +244,13 @@
       "service_price": "",
       "service_protocol": "游戏首次开启该服务时，Cocos会后台通知服务方为游戏开通服务并初始化参数，服务方根据需要可能会获取您的Cocos账户信息，包括账户基本资料、游戏基本资料、账户余额等，点击确认开通按钮即视为您同意该服务访问您的账户信息，详见<a href='https://download.cocos.com/CocosUdc/agreement/Cocos_User_Service_Agreement_cn_20200904.html'>《Cocos用户服务协议》</a>和<a href='https://download.cocos.com/CocosUdc/agreement/Cocos_Privacy_Policy_cn_20200904.html'>《Cocos隐私政策》</a>",
       "service_group": "HUAWEI AppGallery Connect",
-      "service_group_id": "",
+      "service_group_id": "1001",
       "not_service": false
     },
     {
       "service_id": "312",
       "service_name": "云函数",
-      "service_icon": "https://download.cocos.com/CocosUdc/client/56b108cb3f/e6ab16aba9a655a8f24e7d8519b0abc7.png",
+      "service_icon": "https://download.cocos.com/CocosUdc/client/e8b3ed0ab3/49138efdcfe5f9653331651da51ce838.png",
       "service_desc": "云函数是一项 Serverless 计算服务，提供 FaaS（Function as a Service）能力，可以帮助开发者大幅简化应用开发与运维相关的事务，降低应用功能的实现门槛，快速构建业务能力。",
       "service_title": "事件驱动的函数计算平台，保证高可用与伸缩，让您便捷运行代码而无需管理服务器。",
       "service_guide_url": "https://service.cocos.com/document/zh/agc-cloudfunc.html",
@@ -273,13 +273,13 @@
       "service_price": "",
       "service_protocol": "游戏首次开启该服务时，Cocos会后台通知服务方为游戏开通服务并初始化参数，服务方根据需要可能会获取您的Cocos账户信息，包括账户基本资料、游戏基本资料、账户余额等，点击确认开通按钮即视为您同意该服务访问您的账户信息，详见<a href='https://download.cocos.com/CocosUdc/agreement/Cocos_User_Service_Agreement_cn_20200904.html'>《Cocos用户服务协议》</a>和<a href='https://download.cocos.com/CocosUdc/agreement/Cocos_Privacy_Policy_cn_20200904.html'>《Cocos隐私政策》</a>",
       "service_group": "HUAWEI AppGallery Connect",
-      "service_group_id": "",
+      "service_group_id": "1001",
       "not_service": false
     },
     {
       "service_id": "301",
       "service_name": "定位服务",
-      "service_icon": "https://download.cocos.com/CocosUdc/client/dae922b126/6b5b71fc5737e0a21787935d2c640034.png",
+      "service_icon": "https://download.cocos.com/CocosUdc/client/e8b3ed0ab3/11e7f4732119ae233a205ec417cfa43d.png",
       "service_desc": "华为定位服务（HUAWEI Location Kit）采用GPS、Wi-Fi、基站等多途径的混合定位模式进行定位，赋予应用开发者快速、精准地获取用户位置信息的能力。当前主要能力包含三个部分：融合定位、活动识别和地理围栏。",
       "service_title": "赋予应用开发者快速、精准地获取用户位置信息的能力",
       "service_guide_url": "https://service.cocos.com/document/zh/hms-location.html",
@@ -303,13 +303,13 @@
       "service_price": "",
       "service_protocol": "游戏首次开启该服务时，Cocos会后台通知服务方为游戏开通服务并初始化参数，服务方根据需要可能会获取您的Cocos账户信息，包括账户基本资料、游戏基本资料、账户余额等，点击确认开通按钮即视为您同意该服务访问您的账户信息，详见<a href='https://download.cocos.com/CocosUdc/agreement/Cocos_User_Service_Agreement_cn_20200904.html'>《Cocos用户服务协议》</a>和<a href='https://download.cocos.com/CocosUdc/agreement/Cocos_Privacy_Policy_cn_20200904.html'>《Cocos隐私政策》</a>",
       "service_group": "HUAWEI HMS Core",
-      "service_group_id": "",
+      "service_group_id": "1002",
       "not_service": false
     },
     {
       "service_id": "302",
       "service_name": "分析服务",
-      "service_icon": "https://download.cocos.com/CocosUdc/client/dae922b126/8452c8f33a695acbb268c6f1ce1cbe05.png",
+      "service_icon": "https://download.cocos.com/CocosUdc/client/e8b3ed0ab3/b134fdbad8be336fb4bbcaef240c99c2.png",
       "service_desc": "分析服务（Analytics Kit）预置大量分析模型，可帮助您清晰地了解用户的行为方式，从而实现用户、产品、内容的深度洞察，让您实现基于数据驱动的运营，可以就应用营销和产品优化制定明智的决策。",
       "service_title": "预置大量分析模型，可帮助您清晰地了解用户的行为方式",
       "service_guide_url": "https://service.cocos.com/document/zh/hms-analytics.html",
@@ -334,7 +334,7 @@
       "service_price": "",
       "service_protocol": "游戏首次开启该服务时，Cocos会后台通知服务方为游戏开通服务并初始化参数，服务方根据需要可能会获取您的Cocos账户信息，包括账户基本资料、游戏基本资料、账户余额等，点击确认开通按钮即视为您同意该服务访问您的账户信息，详见<a href='https://download.cocos.com/CocosUdc/agreement/Cocos_User_Service_Agreement_cn_20200904.html'>《Cocos用户服务协议》</a>和<a href='https://download.cocos.com/CocosUdc/agreement/Cocos_Privacy_Policy_cn_20200904.html'>《Cocos隐私政策》</a>",
       "service_group": "HUAWEI HMS Core",
-      "service_group_id": "",
+      "service_group_id": "1002",
       "not_service": false
     },
     {
