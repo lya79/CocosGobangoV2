@@ -29,3 +29,7 @@ Rect Spacing | 棋盤格子間距
 ### 下棋畫面
 
 ![下棋畫面](https://raw.githubusercontent.com/lya79/CocosGobangoV2/master/3.PNG)
+
+## 參考
+* http://blog.kohaku.cc/2018/08/10/HakuGo/
+* https://itw01.com/2XF34EM.html
