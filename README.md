@@ -3,8 +3,10 @@
 ## Cocos版本
 使用 cocos creator 2.0.9
 
-## 運行畫面
-### 參數設定
+## 運行影片
+https://www.youtube.com/watch?v=Dh1bhgmNMmc
+
+## 參數設定
 
 ![參數設定](https://raw.githubusercontent.com/lya79/CocosGobangoV2/master/1.PNG)
 
